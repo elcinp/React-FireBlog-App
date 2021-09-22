@@ -10,15 +10,10 @@ import AccountCircle from '@material-ui/icons/AccountCircle';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 import cwLogo from '../../assests/cw.jpeg'
-// import { makeStyles } from '@material-ui/core/styles';
 
 
 
-// const useStyles = makeStyles(theme => (
-//   toolbar:{
-//     justifyContent : 'space-between',
-//   },
-// ));
+
 
 export default function MenuAppBar() {
   // const classes = useStyles();
@@ -84,8 +79,8 @@ export default function MenuAppBar() {
                 open={Boolean(anchorEl)}
                 onClose={handleClose}
                 >
-                <MenuItem onClick={handleClose}>Login</MenuItem>
-                <MenuItem onClick={handleClose}>Register</MenuItem>
+                <MenuItem to="/login" onClick={handleClose}>Login</MenuItem>
+                <MenuItem to="/register" onClick={handleClose}>Register</MenuItem>
               </Menu>
             </div>
           )}
