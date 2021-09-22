@@ -1,8 +1,6 @@
 import React, { useState } from 'react'
 import { Grid, Container, Paper, Avatar, Typography, TextField, Button, CssBaseline } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
-// import fondo from './assets/images/fondo.png'
-// import { LockOutlined as LockOutlinedIcon } from '@material-ui/icons'
 import blogImage from '../../assests/blok.png'
 
 
@@ -48,7 +46,7 @@ const useStyles = makeStyles(theme => ({
 }))
 
 const Login = () => {
-	const [body, setBody] = useState({ nickname: '', password: '' })
+	const [body, setBody] = useState({ email: '', password: '' })
 	const classes = useStyles()
 
 
@@ -71,17 +69,18 @@ const Login = () => {
 					<Avatar className={classes.avatar}>
 						<blogImage className={classes.blogImage}/>
 					</Avatar>
-					<Typography component='h1' variant='h5'>Sign In</Typography>
+					<Typography component='h1' variant='h5'>── LOGIN── </Typography>
 					<form className={classes.form}>
 						<TextField
 							fullWidth
 							autoFocus
+                            type='email'
 							color='primary'
 							margin='normal'
 							variant='outlined'
-							label='Nickname'
-							name='nickname'
-							value={body.nickname}
+							label='Email'
+							name='email'
+							value={body.email}
 							onChange={handleChange}
 						/>
 						<TextField
@@ -102,7 +101,7 @@ const Login = () => {
 							className={classes.button}
 							onClick={() => onSubmit()}
 						>
-							Sign In
+							LOGIN
 						</Button>
 					</form>
 				</div>
