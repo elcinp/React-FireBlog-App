@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Grid, Container, Paper, Avatar, Typography, TextField, Button, CssBaseline } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
-import blogImage from '../../assests/blok.png'
+import blogImage from '../assests/blok.png'
 
 
 const useStyles = makeStyles(theme => ({

@@ -1,6 +1,6 @@
 import React from 'react'
 import { BrowserRouter,Switch,Route } from 'react-router-dom'
-import Navbar from '../navbar/Navbar'
+import Navbar from '../components/navbar/Navbar'
 import Login from '../pages/Login'
 import Register from '../pages/Register'
 
