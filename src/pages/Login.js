@@ -1,7 +1,9 @@
 import React, { useState } from 'react'
+import {useHistory} from 'react-router-dom'
 import { Grid, Container, Paper, Avatar, Typography, TextField, Button, CssBaseline } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
-import blogImage from '../assests/blok.png'
+// import blogImage from '../assests/blok.png'
+import { LockOutlined as LockOutlinedIcon } from '@material-ui/icons'
 
 
 const useStyles = makeStyles(theme => ({
@@ -45,12 +47,14 @@ const useStyles = makeStyles(theme => ({
     }
 }))
 
-const Login = () => {
+const Login = ({setIsAuth}) => {
 	const [body, setBody] = useState({ email: '', password: '' })
 	const classes = useStyles()
+	const history =useHistory()
 
+	
 
-	const handleChange = e => {
+	const handleChange = (e) => {
 		setBody({
 			...body,
 			[e.target.name]: e.target.value
@@ -59,6 +63,8 @@ const Login = () => {
 
 	const onSubmit = () => {
 		console.log(body)
+		setIsAuth(true)
+		history.push('/dashboard')
 	}
 
 	return (
@@ -67,10 +73,11 @@ const Login = () => {
 			<Container component={Paper} elevation={5} maxWidth='xs' className={classes.container}>
 				<div className={classes.div}>
 					<Avatar className={classes.avatar}>
-						<blogImage className={classes.blogImage}/>
+						{/* <blogImage className={classes.blogImage}/> */}
+						<LockOutlinedIcon/>
 					</Avatar>
 					<Typography component='h1' variant='h5'>── LOGIN── </Typography>
-					<form className={classes.form}>
+					<form className={classes.form} >
 						<TextField
 							fullWidth
 							autoFocus

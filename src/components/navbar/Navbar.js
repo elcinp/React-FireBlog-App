@@ -1,21 +1,17 @@
-import * as React from 'react';
-import  { useState } from 'react';
-import AppBar from '@material-ui/core/AppBar';
-import Box from '@material-ui/core/Box';
-import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
-import IconButton from '@material-ui/core/IconButton';
+import * as React from "react";
+import { useState } from "react";
+import AppBar from "@material-ui/core/AppBar";
+import Box from "@material-ui/core/Box";
+import Toolbar from "@material-ui/core/Toolbar";
+import Typography from "@material-ui/core/Typography";
+import IconButton from "@material-ui/core/IconButton";
 // import MenuIcon from '@material-ui/icons/Menu';
-import AccountCircle from '@material-ui/icons/AccountCircle';
-import MenuItem from '@material-ui/core/MenuItem';
-import Menu from '@material-ui/core/Menu';
-import cwLogo from '../../assests/cw.jpeg'
+import AccountCircle from "@material-ui/icons/AccountCircle";
+import MenuItem from "@material-ui/core/MenuItem";
+import Menu from "@material-ui/core/Menu";
+import cwLogo from "../../assests/cw.jpeg";
 
-
-
-
-
-export default function MenuAppBar() {
+export default function MenuAppBar({ isAuth , setIsAuth}) {
   // const classes = useStyles();
   const [auth, setAuth] = React.useState(true);
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -31,28 +27,29 @@ export default function MenuAppBar() {
   const handleClose = () => {
     setAnchorEl(null);
   };
-  
 
   return (
     <Box sx={{ flexGrow: 1 }}>
-      
       <AppBar position="static">
-        <Toolbar style={{justifyContent:'space-between'}}>
+        <Toolbar style={{ justifyContent: "space-between" }}>
           <IconButton
             size="large"
             edge="start"
             color="inherit"
             aria-label="menu"
             sx={{ mr: 2 }}
-          
           >
-            <img src={cwLogo} alt="" style={{width:"40px",height:"40px"}}/>
+            <img
+              src={cwLogo}
+              alt=""
+              style={{ width: "40px", height: "40px" }}
+            />
           </IconButton>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-          ────{' <ELCIN/> '}────
+            ────{" <ELCIN/> "}────
           </Typography>
           {auth && (
-            <div >
+            <div>
               <IconButton
                 size="large"
                 aria-label="account of current user"
@@ -60,7 +57,6 @@ export default function MenuAppBar() {
                 aria-haspopup="true"
                 onClick={handleMenu}
                 color="inherit"
-                
               >
                 <AccountCircle />
               </IconButton>
@@ -68,19 +64,40 @@ export default function MenuAppBar() {
                 id="menu-appbar"
                 anchorEl={anchorEl}
                 anchorOrigin={{
-                  vertical: 'top',
-                  horizontal: 'right',
+                  vertical: "top",
+                  horizontal: "right",
                 }}
                 keepMounted
                 transformOrigin={{
-                  vertical: 'top',
-                  horizontal: 'right',
+                  vertical: "top",
+                  horizontal: "right",
                 }}
                 open={Boolean(anchorEl)}
                 onClose={handleClose}
-                >
-                <MenuItem to="/login" onClick={handleClose}>Login</MenuItem>
-                <MenuItem to="/register" onClick={handleClose}>Register</MenuItem>
+              >
+                {isAuth ? (
+                  <>
+                    {" "}
+                    <MenuItem to="/register" onClick={handleClose}>
+                      profile
+                    </MenuItem>
+                    <MenuItem to="/register" onClick={handleClose}>
+                      New
+                    </MenuItem>
+                    <MenuItem to="/register" onClick={() => setIsAuth(false)}>
+                      logout
+                    </MenuItem>
+                  </>
+                ) : (
+                  <>
+                    <MenuItem to="/login" onClick={handleClose}>
+                      Login
+                    </MenuItem>
+                    <MenuItem to="/register" onClick={handleClose}>
+                      Register
+                    </MenuItem>
+                  </>
+                )}
               </Menu>
             </div>
           )}
@@ -89,30 +106,6 @@ export default function MenuAppBar() {
     </Box>
   );
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 // import React,{useState} from "react";
 // import cw from "../../assests/cw.jpeg"
@@ -130,7 +123,7 @@ export default function MenuAppBar() {
 //       <NavBlog>
 //       ────<i>{'<ELCIN/>'}</i> <span>Blog </span> ────
 //       </NavBlog>
-      
+
 //       <Menu>
 //         <NavUserIcon onClick={()=> setIsOpen(!isOpen)}/>
 //         <span/>
@@ -142,6 +135,3 @@ export default function MenuAppBar() {
 // };
 
 // export default Navbar;
-
-
-
