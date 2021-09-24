@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import {useHistory} from 'react-router-dom'
+import { signIn, signUpProvider, forgotPassword } from "../auth/firebase";
 import { Grid, Container, Paper, Avatar, Typography, TextField, Button, CssBaseline } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
 // import blogImage from '../assests/blok.png'

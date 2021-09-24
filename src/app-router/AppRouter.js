@@ -12,7 +12,7 @@ const AppRouter = () => {
   const [isAuth, setIsAuth] = useState(false);
   const AuthContainer = () => (
     <div>
-      <PrivateRouter isAuth={isAuth} exact path="/" component={Dashboard} />
+      <PrivateRouter isAuth={isAuth} exact path="/dashboard" component={Dashboard} />
       <PrivateRouter isAuth={isAuth} path="/about" component={About} />
       <PrivateRouter isAuth={isAuth} path="/details" component={Details} />
     </div>
@@ -36,10 +36,4 @@ const AppRouter = () => {
 
 export default AppRouter;
 
-// <BrowserRouter>
-//         <Navbar/>
-//     <Switch>
-//         <Route path="/login" component={Login}/>
-//         <Route path="/register" component={Register}/>
-//     </Switch>
-// </BrowserRouter>
+
