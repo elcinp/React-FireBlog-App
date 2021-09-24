@@ -110,6 +110,15 @@ const Login = ({setIsAuth}) => {
 						>
 							LOGIN
 						</Button>
+						<Button
+							fullWidth
+							variant='contained'
+							color='secondary'
+							className={classes.button}
+							onClick={() => onSubmit()}
+						>
+							WITH GOOGLE
+						</Button>
 					</form>
 				</div>
 			</Container>
