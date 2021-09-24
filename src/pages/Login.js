@@ -1,10 +1,11 @@
 import React, { useState } from 'react'
 import {useHistory} from 'react-router-dom'
-import { signIn, signUpProvider, forgotPassword } from "../auth/firebase";
+import { signIn, signUpProvider } from "../helpers/firebase";
 import { Grid, Container, Paper, Avatar, Typography, TextField, Button, CssBaseline } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
 // import blogImage from '../assests/blok.png'
 import { LockOutlined as LockOutlinedIcon } from '@material-ui/icons'
+import firebase from '../helpers/firebase'
 
 
 const useStyles = makeStyles(theme => ({
@@ -67,6 +68,10 @@ const Login = ({setIsAuth}) => {
 		setIsAuth(true)
 		history.push('/dashboard')
 	}
+	const handleProviderLogin = () => {
+		signUpProvider();
+		history.push("/dashboard");
+	  };
 
 	return (
 		<Grid container component='main' className={classes.root}>
@@ -116,7 +121,7 @@ const Login = ({setIsAuth}) => {
 							variant='contained'
 							color='secondary'
 							className={classes.button}
-							onClick={() => onSubmit()}
+							onClick={handleProviderLogin}
 						>
 							WITH GOOGLE
 						</Button>

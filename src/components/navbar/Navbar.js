@@ -78,13 +78,13 @@ export default function MenuAppBar({ isAuth , setIsAuth}) {
                 {isAuth ? (
                   <>
                     {" "}
-                    <MenuItem to="/register" onClick={handleClose}>
+                    <MenuItem to="/profile" onClick={handleClose}>
                       profile
                     </MenuItem>
-                    <MenuItem to="/register" onClick={handleClose}>
+                    <MenuItem to="/new" onClick={handleClose}>
                       New
                     </MenuItem>
-                    <MenuItem to="/register" onClick={() => setIsAuth(false) && handleClose()}>
+                    <MenuItem to="/login" onClick={() => setIsAuth(false) && handleClose()}>
                       logout
                     </MenuItem>
                   </>
