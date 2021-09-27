@@ -5,6 +5,7 @@ export const AuthContext = createContext();
 
 function AuthContextProvider(props) {
   const [currentUser, setCurrentUser] = useState();
+  const [blogCard,setBlogCard]= useState([])
 //   console.log(
 //     "🚀 ~ file: AuthContext.js ~ line 10 ~ AuthContextProvider ~ currentUser",
 //     currentUser

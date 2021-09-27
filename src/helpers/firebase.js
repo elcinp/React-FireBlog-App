@@ -70,11 +70,15 @@ const firebaseApp = firebase.initializeApp({
     });
   };
   
-  export const signUpProvider = () => {
+  export const signUpProvider = async () => {
     var provider = new firebase.auth.GoogleAuthProvider();
-    provider.setCustomParameters({ prompt: "select_account" });
-    firebase.auth().signInWithPopup(provider);
-  };
+    provider.setCustomParameters({
+        prompt : 'select_account'
+      });
+
+    firebase.auth()
+      .signInWithPopup(provider)
+}
 
 //   export const Logout = async () => {
 //     await firebase.auth().signOut();
