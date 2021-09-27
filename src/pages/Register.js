@@ -1,7 +1,10 @@
 import React, { useState } from 'react'
+import { useHistory } from 'react-router-dom';
+import { createUser, signUpProvider } from "../helpers/firebase";
 import { Grid, Container, Paper, Avatar, Typography, TextField, Button, CssBaseline } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
-import blogImage from '../assests/blok.png'
+// import blogImage from '../assests/blok.png'
+
 
 
 const useStyles = makeStyles(theme => ({
@@ -45,20 +48,33 @@ const useStyles = makeStyles(theme => ({
     }
 }))
 
-const Login = () => {
-	const [body, setBody] = useState({ email: '', password: '' })
+const Register = ({setIsAuth}) => {
+	const [user, setUser] = useState({ email: '', password: '' })
 	const classes = useStyles()
+	const history = useHistory()
 
 
 	const handleChange = e => {
-		setBody({
-			...body,
+		setUser({
+			...user,
 			[e.target.name]: e.target.value
 		})
 	}
 
-	const onSubmit = () => {
-		console.log(body)
+	const handleRegister = () => {
+		console.log(user)
+    	createUser(user.email, user.password);
+		setIsAuth(true)
+    	history.push('/');
+	}
+
+	// const handleProviderRegister = () => {
+    // 	signUpProvider();
+    // 	history.push('/dashboard');
+    // }
+	const handleProviderRegister = () => {
+		signUpProvider();
+		history.push('/')
 	}
 
 	
@@ -82,7 +98,7 @@ const Login = () => {
 							variant='outlined'
 							label='Email'
 							name='email'
-							value={body.email}
+							value={user.email}
 							onChange={handleChange}
 						/>
 						<TextField
@@ -93,7 +109,7 @@ const Login = () => {
 							variant='outlined'
 							label='Password'
 							name='password'
-							value={body.password}
+							value={user.password}
 							onChange={handleChange}
 						/>
 						<Button
@@ -101,9 +117,18 @@ const Login = () => {
 							variant='contained'
 							color='secondary'
 							className={classes.button}
-							onClick={() => onSubmit()}
+							onClick={handleRegister}
 						>
 							REGISTER
+						</Button>
+						<Button
+							fullWidth
+							variant='contained'
+							color='secondary'
+							className={classes.button}
+							onClick={handleProviderRegister}
+						>
+							WITH GOOGLE
 						</Button>
 					</form>
 				</div>
@@ -112,5 +137,5 @@ const Login = () => {
 	)
 }
 
-export default Login
+export default Register
 

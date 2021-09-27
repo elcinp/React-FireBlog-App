@@ -10,9 +10,9 @@ function AuthContextProvider(props) {
 //     currentUser
 //   );
 
-//   useEffect(() => {
-//     userObserver(setCurrentUser);
-//   }, []);
+  useEffect(() => {
+    userObserver(setCurrentUser);
+  }, []);
 
   return (
     <AuthContext.Provider value={{ currentUser }}>

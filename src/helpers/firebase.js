@@ -2,6 +2,7 @@ import firebase from "firebase/app"
 import "firebase/auth";
 import "firebase/firestore";
 
+
 const firebaseApp = firebase.initializeApp({
     apiKey: process.env.REACT_APP_API_KEY,
     authDomain: process.env.REACT_APP_AUTH_DOMAIN,
@@ -11,7 +12,7 @@ const firebaseApp = firebase.initializeApp({
     appId: process.env.REACT_APP_APP_ID,
   });
 
-export const createUser = async (email, password, displayName) => {
+  export const createUser = async (email, password) => {
     try {
       await firebase
         .auth()
@@ -28,7 +29,7 @@ export const createUser = async (email, password, displayName) => {
         });
   
       const currentUser = firebase.auth().currentUser;
-      await currentUser.updateProfile({ displayName });
+      // await currentUser.updateProfile({ displayemail });
     } catch (error) {
       alert(
         "There exists an account with this email. Please login with your password or continue with Google!"
@@ -37,23 +38,25 @@ export const createUser = async (email, password, displayName) => {
   };
   
   export const signIn = (email, password) => {
-    firebase
+     return firebase
       .auth()
       .signInWithEmailAndPassword(email, password)
-      .then((userCredential) => {
-        // Signed in
-        // var user = userCredential.user;
-        // ...
-      })
-      .catch((error) => {
-        // var errorCode = error.code;
-        // var errorMessage = error.message;
-        alert("The password is invalid or the user does not have a password!");
-      });
+      // .then((userCredential) => {
+      //   // Signed in
+      //   // var user = userCredential.user;
+      //   // ...
+      // })
+      // .catch((error) => {
+      //   // var errorCode = error.code;
+      //   // var errorMessage = error.message;
+      //   alert("The password is invalid or the user does not have a password!");
+      // });
   };
   
   export const signOut = () => {
+    // const history = useHistory()
     firebase.auth().signOut();
+    // history.push('/login')
   };
   
   export const userObserver = async (setCurrentUser) => {
@@ -72,6 +75,11 @@ export const createUser = async (email, password, displayName) => {
     provider.setCustomParameters({ prompt: "select_account" });
     firebase.auth().signInWithPopup(provider);
   };
+
+//   export const Logout = async () => {
+//     await firebase.auth().signOut();
+    
+// }
   
 //   export const forgotPassword = (email) => {
 //     firebase.auth().sendPasswordResetEmail(email);

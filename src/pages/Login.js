@@ -5,7 +5,8 @@ import { Grid, Container, Paper, Avatar, Typography, TextField, Button, CssBasel
 import { makeStyles } from '@material-ui/core/styles'
 // import blogImage from '../assests/blok.png'
 import { LockOutlined as LockOutlinedIcon } from '@material-ui/icons'
-import firebase from '../helpers/firebase'
+// import firebase from '../helpers/firebase'
+import { successToastify } from "../helpers/toastNotify";
 
 
 const useStyles = makeStyles(theme => ({
@@ -52,7 +53,7 @@ const useStyles = makeStyles(theme => ({
 const Login = ({setIsAuth}) => {
 	const [body, setBody] = useState({ email: '', password: '' })
 	const classes = useStyles()
-	const history =useHistory()
+	const history = useHistory()
 
 	
 
@@ -63,14 +64,27 @@ const Login = ({setIsAuth}) => {
 		})
 	}
 
-	const onSubmit = () => {
-		console.log(body)
-		setIsAuth(true)
-		history.push('/dashboard')
+	const onSubmit =  async () => {
+		// console.log(body)
+		// setIsAuth(true)
+		try {
+			await signIn(body.email, body.password)
+			history.push('/')
+			setIsAuth(true)
+			successToastify("Log in successfully")
+		}catch{
+			alert("Kullanıcı Adı veya Şifre Hatalı")
+		}
 	}
-	const handleProviderLogin = () => {
-		signUpProvider();
-		history.push("/dashboard");
+	const handleProviderLogin = async () => {
+		try{
+			await signUpProvider();
+			history.push("/");
+			setIsAuth(true)
+			successToastify("Logged in successfully")
+		}catch{
+			alert("Giriş başarısız")
+		}
 	  };
 
 	return (

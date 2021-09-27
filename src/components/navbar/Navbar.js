@@ -5,28 +5,41 @@ import Box from "@material-ui/core/Box";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import IconButton from "@material-ui/core/IconButton";
-// import MenuIcon from '@material-ui/icons/Menu';
 import AccountCircle from "@material-ui/icons/AccountCircle";
 import MenuItem from "@material-ui/core/MenuItem";
 import Menu from "@material-ui/core/Menu";
 import cwLogo from "../../assests/cw.jpeg";
+import { Link } from "react-router-dom";
+import {signOut} from '../../helpers/firebase'
+import {useHistory} from 'react-router-dom'
 
 export default function MenuAppBar({ isAuth , setIsAuth}) {
   // const classes = useStyles();
-  const [auth, setAuth] = React.useState(true);
-  const [anchorEl, setAnchorEl] = React.useState(null);
+  const [auth, setAuth] = useState(true);
+  const [anchorEl, setAnchorEl] = useState(null);
+  const history = useHistory()
 
-  const handleChange = (event) => {
-    setAuth(event.target.checked);
-  };
+  // const handleChange = (event) => {
+  //   setAuth(event.target.checked);
+  // };
 
   const handleMenu = (event) => {
     setAnchorEl(event.currentTarget);
+    console.log(anchorEl);
   };
 
   const handleClose = () => {
     setAnchorEl(null);
   };
+
+  const logOut = () => {
+    
+    signOut()
+    history.push('/login')
+    setIsAuth(false)
+    handleClose()
+  }
+
 
   return (
     <Box sx={{ flexGrow: 1 }}>
@@ -46,7 +59,7 @@ export default function MenuAppBar({ isAuth , setIsAuth}) {
             />
           </IconButton>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            ────{" <ELCIN/> "}────
+            ────{" <ELCIN/> BLOG"}────
           </Typography>
           {auth && (
             <div>
@@ -77,24 +90,24 @@ export default function MenuAppBar({ isAuth , setIsAuth}) {
               >
                 {isAuth ? (
                   <>
-                    {" "}
+                    
                     <MenuItem to="/profile" onClick={handleClose}>
-                      profile
+                    <Link to='/profile'>Profile</Link>
                     </MenuItem>
                     <MenuItem to="/new" onClick={handleClose}>
-                      New
+                    <Link to='/new-blog'>New</Link>
                     </MenuItem>
-                    <MenuItem to="/login" onClick={() => setIsAuth(false) && handleClose()}>
-                      logout
+                    <MenuItem to="/login" onClick={logOut}>
+                    Logout
                     </MenuItem>
                   </>
                 ) : (
                   <>
                     <MenuItem to="/login" onClick={handleClose}>
-                      Login
+                      <Link to='/login'>Login</Link>
                     </MenuItem>
-                    <MenuItem to="/register" onClick={handleClose}>
-                      Register
+                    <MenuItem onClick={handleClose}>
+                      <Link to="/register">Register</Link>
                     </MenuItem>
                   </>
                 )}
